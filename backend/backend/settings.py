@@ -45,7 +45,17 @@ INSTALLED_APPS = [
     #Applications tierces 
 
     'rest_framework',#3
+    'knox',#4
+    'django_rest_passwordreset',#
 ]
+AUTH_USER_MODEL = 'users.User'
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        'knox.auth.TokenAuthentication',
+    ]
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

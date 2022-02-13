@@ -47,19 +47,8 @@ class UserAPI(generics.RetrieveAPIView):
 
 
 class ListUser(generics.ListAPIView):
-
-    queryset=User.objects.filter(role="responsable").all()
-    serializer_class=UserSerializer
-   
-    '''def listUtilisateur(self,request):
-        #serializer = UserSerializer(request.user)
-        #if serializer.data['role']=='admin':
-        queryset= User.objects.all()
-        serializer = UserSerializer(queryset, many=True)
-        return Response(serializer.data)
-        return Response({
-            "message":"vous ne pouvez pas voir tout les responsable "
-        })'''
+    pass
+  
 class DeleteUser(viewsets.ViewSet):
     def delete(self , request ,pk=None):
         querySet=User.objects.get(id=pk)

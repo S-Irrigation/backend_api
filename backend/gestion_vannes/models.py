@@ -5,9 +5,10 @@ from django.db import models
 # Create your models here.
 class Champ(models.Model):
     nomChamp=models.CharField(max_length=30 ,unique=True)
+    proprietaire=models.ForeignKey('users.User',on_delete=models.CASCADE)
     address=models.CharField(max_length=50 ,unique=True)
     description=models.TextField(max_length=200 )
-    cree_le=models.DateTimeField(auto_now_add=True)
+    creer_le=models.DateTimeField(auto_now_add=True)
     modifier_le=models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -16,17 +17,24 @@ class Champ(models.Model):
 class Noeud(models.Model):
     nomNoeud=models.CharField(max_length=20)
     description=models.TextField(max_length=200 )
-    valeur=models.FloatField()
+    class Meta:
+        abstract = True
+class Vanne(Noeud):
     status=models.BooleanField(default=True)
     
+    def __str__(self) :
+        return super().nomNoeud
+class Capteur(Noeud):
+    valeur=models.FloatField()
+    
     def __str__(self):
-        return self.nomNoeud
+        return super().nomNoeud
 class MicroControleur(models.Model):
     TYPES = [
         ('esp32', 'ESP32')
         
     ]
-    nom=models.CharField(max_length=200)
+    nomMicrocontroleur=models.CharField(max_length=200)
     type = models.CharField(
         max_length=13,
         choices=TYPES,

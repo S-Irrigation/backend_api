@@ -15,9 +15,30 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from rest_framework.schemas import get_schema_view # new
+from rest_framework import permissions # new
+from drf_yasg.views import get_schema_view # new
+from drf_yasg import openapi # new
+
+schema_view = get_schema_view( # new
+openapi.Info(
+title="We Report It ",
+default_version="v1",
+description="""Gestion d' un systeme d' irrigation Projet Annuel Cette documentatio,n decrit les API utiliser Pour cela  """,
+terms_of_service="http://sciences-techniques.univ-rouen.fr/master-informatique-genie-de-l-informatique-logicielle-543237.kjsp?RH=1378324428882",
+contact=openapi.Contact(email="luc-perin.panta-pameni@univ-rouen.fr"),
+license=openapi.License(name="Université de Rouen"),
+),
+public=True,
+permission_classes=(permissions.AllowAny,),
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('gestVannes/' , include('vanneGestion.urls')),
-    path('users/', include('users.urls'))
+    path('users/', include('users.urls')),
+    path('swagger/', schema_view.with_ui( # new
+        'swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('redoc/', schema_view.with_ui( # new
+'redoc', cache_timeout=0), name='schema-redoc'),
 ]

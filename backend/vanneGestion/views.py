@@ -20,3 +20,12 @@ class ListChamps(viewsets.ViewSet):
 class CreateVanne(generics.CreateAPIView):
     queryset=Vanne.objects.all()
     serializer_class=VanneSerializer
+class RUDVanne(generics.RetrieveUpdateDestroyAPIView):
+    queryset=Vanne.objects.all()
+    serializer_class=VanneSerializer
+
+class ListVanne(viewsets.ViewSet):
+    def get(self ,request):
+        queryset=Vanne.objects.all()
+        serializer=VanneSerializer(queryset,many=True)
+        return Response(serializer.data)

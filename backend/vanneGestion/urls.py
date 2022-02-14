@@ -15,7 +15,9 @@ urlpatterns = [
     #### Gestion des vannes 
     path('creerVanne' ,CreateVanne.as_view()),
     path('vanne/<int:pk>',RUDVanne.as_view()),
-    path('listVanne/' ,ListVanne.as_view()),
+    path('listVanne/' ,ListVanne.as_view({
+        'get':'get'
+    })),
 
    
 ]

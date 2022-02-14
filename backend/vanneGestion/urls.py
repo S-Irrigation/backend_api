@@ -1,6 +1,6 @@
 
 from django.urls import path
-from backend.vanneGestion.views import CreateVanne, ListVanne, RUDVanne
+from vanneGestion.views import CreateVanne, ListVanne, RUDVanne
 
 from vanneGestion.views import CreateChamps, ListChamps, RUDChamps
 

@@ -1,7 +1,7 @@
 
 from django.urls import path
 
-from backend.vanneGestion.views import CreateChamps, ListChamps, RUDChamps
+from vanneGestion.views import CreateChamps, ListChamps, RUDChamps
 
 
 

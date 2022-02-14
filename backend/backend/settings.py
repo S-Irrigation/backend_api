@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'knox',#4
     'django_rest_passwordreset',#
     'corsheaders',
+    'drf_yasg', # new
 ]
 AUTH_USER_MODEL = 'users.User'
 REST_FRAMEWORK = {

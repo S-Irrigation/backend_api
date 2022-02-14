@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from backend.vanneGestion.models import Champ, Vanne
-from backend.vanneGestion.serializers import ChampsSerializer, VanneSerializer
+from vanneGestion.serializers import ChampsSerializer, VanneSerializer
 from rest_framework import generics, serializers ,viewsets,permissions
 from rest_framework.response import Response
 

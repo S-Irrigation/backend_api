@@ -2,7 +2,7 @@ from pyexpat import model
 from attr import fields
 from rest_framework import serializers
 
-from gestionVannes.models import Capteur, Champ, MicroControleur, Noeud, Vanne
+from vanneGestion.models import Capteur, Champ, MicroControleur, Noeud, Vanne
 
 class ChampsSerializer(serializers.ModelSerializer):
    class Meta:

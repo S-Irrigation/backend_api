@@ -11,16 +11,16 @@ class ChampsSerializer(serializers.ModelSerializer):
 class NoeudSerializer(serializers.ModelSerializer):
     class Meta:
         model=Noeud
-        fields=('nomNoeud', 'description')
+        fields=('nomNoeud', 'description',)
 class VanneSerializer(serializers.ModelSerializer):
     class Meta:
         model=Vanne
-        fields=('status' ,'nomNoeud')
+        fields=('status' ,'nomNoeud' , 'champ')
 
 class CapteurSerializer(serializers.ModelSerializer):
     class Meta:
         model=Capteur
-        fields=('valeur','Nomnoeud')
+        fields=('valeur','Nomnoeud','champ')
 class Microcontroleur(serializers.ModelSerializer):
     class Meta:
         model=MicroControleur

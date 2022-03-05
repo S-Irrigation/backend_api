@@ -19,7 +19,7 @@ class Noeud(models.Model):
     class Meta:
         abstract = True
 class Vanne(Noeud):
-    status=models.BooleanField(default=True)
+    status=models.BooleanField(default=False)
     debut=models.DateTimeField(auto_now_add=True )
     fin=models.DateTimeField(auto_now_add=True)
     

@@ -20,8 +20,8 @@ class Noeud(models.Model):
         abstract = True
 class Vanne(Noeud):
     status=models.BooleanField(default=False)
-    debut=models.DateTimeField(auto_now_add=True )
-    fin=models.DateTimeField(auto_now_add=True)
+    debut=models.DateTimeField()
+    fin=models.DateTimeField()
     
     def __str__(self) :
         return super().nomNoeud

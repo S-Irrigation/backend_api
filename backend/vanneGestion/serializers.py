@@ -11,7 +11,7 @@ class ChampsSerializer(serializers.ModelSerializer):
 class NoeudSerializer(serializers.ModelSerializer):
     class Meta:
         model=Noeud
-        fields=('nomNoeud', 'description',)
+        fields=('nomNoeud', 'description')
 class VanneSerializer(serializers.ModelSerializer):
     class Meta:
         model=Vanne

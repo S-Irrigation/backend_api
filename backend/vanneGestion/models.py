@@ -15,7 +15,6 @@ class Champ(models.Model):
 class Noeud(models.Model):
     champ=models.ForeignKey(Champ ,on_delete=models.CASCADE ,default=0)
     nomNoeud=models.CharField(max_length=20)
-    description=models.TextField(max_length=200 )
     class Meta:
         abstract = True
 class Vanne(Noeud):

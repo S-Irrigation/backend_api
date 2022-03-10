@@ -17,7 +17,7 @@ class Noeud(models.Model):
     nomNoeud=models.CharField(max_length=20)
     class Meta:
         abstract = True
-class Vanne(Noeud):
+class Vannes(Noeud):
     status=models.BooleanField(default=False)
     start=models.DateTimeField()
     end=models.DateTimeField()

@@ -1,5 +1,6 @@
 from pyexpat import model
 from attr import fields
+from backend.vanneGestion.models import Vannes
 from rest_framework import serializers
 
 from vanneGestion.models import Capteur, Champ, MicroControleur, Noeud, Vanne
@@ -14,7 +15,7 @@ class NoeudSerializer(serializers.ModelSerializer):
         fields=('nomNoeud')
 class VanneSerializer(serializers.ModelSerializer):
     class Meta:
-        model=Vanne
+        model=Vannes
         fields=('id','status' ,'nomNoeud', 'champ' , 'start' ,'end')
 
 class CapteurSerializer(serializers.ModelSerializer):

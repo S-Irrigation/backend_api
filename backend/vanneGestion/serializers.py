@@ -16,7 +16,7 @@ class NoeudSerializer(serializers.ModelSerializer):
 class VanneSerializer(serializers.ModelSerializer):
     class Meta:
         model=Vannes
-        fields=('id','status' ,'nomNoeud', 'champ' , 'start' ,'end','desciption')
+        fields=('id','status' ,'nomNoeud', 'champ' , 'start' ,'end','description')
 
 class CapteurSerializer(serializers.ModelSerializer):
     class Meta:

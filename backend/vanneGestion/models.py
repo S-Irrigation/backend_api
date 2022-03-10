@@ -21,7 +21,7 @@ class Vannes(Noeud):
     status=models.BooleanField(default=False)
     start=models.DateTimeField()
     end=models.DateTimeField()
-    
+    description=models.TextField(max_length=200 )
     def __str__(self) :
         return super().nomNoeud
 class Capteur(Noeud):

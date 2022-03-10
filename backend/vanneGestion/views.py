@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from vanneGestion.models import Champ, Vanne
+from vanneGestion.models import Champ, Vannes
 from vanneGestion.serializers import ChampsSerializer, VanneSerializer
 from rest_framework import generics, serializers ,viewsets,permissions
 from rest_framework.response import Response
@@ -18,14 +18,14 @@ class ListChamps(viewsets.ViewSet):
         serializer=ChampsSerializer(queryset,many=True)
         return Response(serializer.data)
 class CreateVanne(generics.CreateAPIView):
-    queryset=Vanne.objects.all()
+    queryset=Vannes.objects.all()
     serializer_class=VanneSerializer
 class RUDVanne(generics.RetrieveUpdateDestroyAPIView):
-    queryset=Vanne.objects.all()
+    queryset=Vannes.objects.all()
     serializer_class=VanneSerializer
 
 class ListVanne(viewsets.ViewSet):
     def get(self ,request):
-        queryset=Vanne.objects.all()
+        queryset=Vannes.objects.all()
         serializer=VanneSerializer(queryset,many=True)
         return Response(serializer.data)

@@ -34,3 +34,8 @@ class ActivateVanne(viewsets.ViewSet):
         queryset=Vannes.objects.filter(status=True)
         serializer=VanneSerializer(queryset , many=True)
         return Response(serializer.data)
+class Unactivatevanne(viewsets.Viewset):
+    def get(self , request):
+        queryset=Vannes.objects.filter(status=False)
+        serializer=VanneSerializer(queryset,many=False)
+        return Response(serializer.data)

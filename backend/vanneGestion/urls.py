@@ -19,7 +19,7 @@ urlpatterns = [
     path('listVanne/' ,ListVanne.as_view({
         'get':'get'
     })),
-    path('activeVannne',ActivateVanne.as_view({
+    path('activeVannne/',ActivateVanne.as_view({
         'get':'get'
     }))
 

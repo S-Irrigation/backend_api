@@ -25,7 +25,7 @@ urlpatterns = [
     path('unactiveVanne/',Unactivatevanne.as_view({
         'get':'get'
     })),
-    path('getIdChampByName/<int:id>' ,getidChamp),
-    path('activationmanuelle/<str:nomNoeud>' ,activationManuel)
+    path('getIdChampByName/<str:nomChamp>' ,getidChamp),
+    path('activationmanuelle/<in:id>' ,activationManuel)
    
 ]

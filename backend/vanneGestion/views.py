@@ -3,7 +3,8 @@ from vanneGestion.models import Champ, Vannes
 from vanneGestion.serializers import ChampsSerializer, VanneSerializer
 from rest_framework import generics, serializers ,viewsets,permissions
 from rest_framework.response import Response
-
+from rest_framework.decorators import api_view
+import datetime
 # Create your views here.
 class CreateChamps(generics.CreateAPIView):
     queryset=Champ.objects.all()
@@ -30,7 +31,7 @@ class ListVanne(viewsets.ViewSet):
         serializer=VanneSerializer(queryset,many=True)
         return Response(serializer.data)
 class ActivateVanne(viewsets.ViewSet):
-    def get (self , request):
+    def get (self , request , pk):
         queryset=Vannes.objects.filter(status=True)
         serializer=VanneSerializer(queryset , many=True)
         return Response(serializer.data)
@@ -39,3 +40,20 @@ class Unactivatevanne(viewsets.ViewSet):
         queryset=Vannes.objects.filter(status=False)
         serializer=VanneSerializer(queryset,many=True)
         return Response(serializer.data)
+
+@api_view(["PUT"])
+def  activationManuel(request ,id):
+    vanne=Vannes.objects.get(id=id)
+    vanne.start=datetime.datetime.now()
+    vanne.end=datetime.datetime(2080, 5, 17)
+    vanne.status=True
+    vanne.save()
+    return Response({
+        "id":vanne.id,
+        "nomNoeud":vanne.nomNeud,
+        "start":vanne.start,
+        "end":vanne.end,
+        "status":vanne.status
+        
+    })
+        

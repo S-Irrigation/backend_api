@@ -1,10 +1,11 @@
 from django.db import models
 
+
 # Create your models here.
 class Champ(models.Model):
     nomChamp=models.CharField(max_length=30 ,unique=True)
     proprietaire=models.ForeignKey('users.User',on_delete=models.CASCADE)
-    address=models.CharField(max_length=50 ,unique=True)
+    address=models.CharField(max_length=50)
     description=models.TextField(max_length=200 )
     creer_le=models.DateTimeField(auto_now_add=True)
     modifier_le=models.DateTimeField(auto_now_add=True)
@@ -19,9 +20,9 @@ class Noeud(models.Model):
         abstract = True
 class Vannes(Noeud):
     status=models.BooleanField(default=False)
-    start=models.DateTimeField()
-    end=models.DateTimeField()
-    description=models.TextField(max_length=200 )
+    start=models.DateTimeField(null=True, blank=True)
+    end=models.DateTimeField(null=True, blank=True)
+    description=models.TextField(max_length=200 , null=True )
     def __str__(self) :
         return super().nomNoeud
 class Capteur(Noeud):

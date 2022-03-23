@@ -50,7 +50,7 @@ def  activationManuel(request ,id):
     vanne.save()
     return Response({
         "id":vanne.id,
-        "nomNoeud":vanne.nomNeud,
+        "nomNoeud":vanne.nomNoeud,
         "start":vanne.start,
         "end":vanne.end,
         "status":vanne.status 

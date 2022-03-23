@@ -26,6 +26,6 @@ urlpatterns = [
         'get':'get'
     })),
     path('getIdChampByName/<str:nomChamp>' ,getidChamp),
-    path('activationmanuelle/<in:id>' ,activationManuel)
+    path('activationmanuelle/<int:id>' ,activationManuel)
    
 ]

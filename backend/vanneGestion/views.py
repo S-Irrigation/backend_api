@@ -42,8 +42,8 @@ class Unactivatevanne(viewsets.ViewSet):
         return Response(serializer.data)
 
 @api_view(["PUT"])
-def  activationManuel(request ,id):
-    vanne=Vannes.objects.get(id=id)
+def  activationManuel(request ,nomNoeud):
+    vanne=Vannes.objects.get(nomNeud=nomNoeud)
     vanne.start=datetime.datetime.now()
     vanne.end=datetime.datetime(2080, 5, 17)
     vanne.status=True
@@ -53,7 +53,13 @@ def  activationManuel(request ,id):
         "nomNoeud":vanne.nomNeud,
         "start":vanne.start,
         "end":vanne.end,
-        "status":vanne.status
-        
+        "status":vanne.status 
+    })
+
+@api_view(["GET"])
+def getidChamp(request ,nomChamp):
+    champ=Champ.objects.get(nomChamp=nomChamp)
+    return Response({
+        "id":champ.id
     })
         

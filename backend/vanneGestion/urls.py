@@ -22,9 +22,9 @@ urlpatterns = [
     path('activeVannne/',ActivateVanne.as_view({
         'get':'get'
     })),
-    path('unactiveVanne/' , Unactivatevanne.as_view({
+    path('unactiveVanne/',Unactivatevanne.as_view({
         'get':'get'
-    }))
+    })),
     path('getIdChampByName/<str:nomChamp>' ,getidChamp),
     path('activationmanuelle/<str:nomNoeud>' ,activationManuel)
    

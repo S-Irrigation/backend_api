@@ -1,7 +1,7 @@
 
 from django.urls import path
  
-from vanneGestion.views import CreateVanne, ListVanne, RUDVanne ,ActivateVanne, Unactivatevanne, activationManuel, getidChamp
+from vanneGestion.views import CreateVanne, ListVanne, RUDVanne ,ActivateVanne, Unactivatevanne, activationManuel, desactivation, getidChamp
 
 from vanneGestion.views import CreateChamps, ListChamps, RUDChamps
 
@@ -26,6 +26,7 @@ urlpatterns = [
         'get':'get'
     })),
     path('getIdChampByName/<str:nomChamp>' ,getidChamp),
-    path('activationmanuelle/<int:id>' ,activationManuel)
+    path('activationmanuelle/<int:id>' ,activationManuel),
+    path('desactivation/<int:id>' ,desactivation)
    
 ]

@@ -1,3 +1,5 @@
+from functools import partial
+from logging import raiseExceptions
 from django.shortcuts import render
 from vanneGestion.models import Champ, Vannes
 from vanneGestion.serializers import ChampsSerializer, VanneSerializer
@@ -49,12 +51,29 @@ def  activationManuel(request ,id):
     vanne.status=True
     vanne.save()
     return Response({
+        "message":"Activation Reussi",
         "id":vanne.id,
         "nomNoeud":vanne.nomNoeud,
         "start":vanne.start,
         "end":vanne.end,
         "status":vanne.status 
     })
+    
+@api_view(["GET"])
+def desactivation(request , id):
+    vanne=Vannes.objects.get(id=id)
+    vanne.status=False
+    vanne.start=vanne.end
+    vanne.save()
+    return Response({
+        "message":"Desactivation Reussi",
+        "id":vanne.id,
+        "nomNoeud":vanne.nomNoeud,
+        "start":vanne.start,
+        "end":vanne.end,
+        "status":vanne.status 
+    })
+
 
 @api_view(["GET"])
 def getidChamp(request ,nomChamp):

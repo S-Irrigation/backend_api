@@ -43,7 +43,7 @@ class Unactivatevanne(viewsets.ViewSet):
         serializer=VanneSerializer(queryset,many=True)
         return Response(serializer.data)
 
-@api_view(["GET"])
+@api_view(["POST"])
 def  activationManuel(request ,id):
     vanne=Vannes.objects.get(id=id)
     vanne.start=datetime.datetime.now()

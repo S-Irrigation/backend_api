@@ -1,5 +1,5 @@
 from django.db import models
-
+import datetime
 
 # Create your models here.
 class Champ(models.Model):
@@ -20,8 +20,8 @@ class Noeud(models.Model):
         abstract = True
 class Vannes(Noeud):
     status=models.BooleanField(default=False)
-    start=models.DateTimeField(null=True, blank=True)
-    end=models.DateTimeField(null=True, blank=True)
+    start=models.DateTimeField(default=datetime.datetime(2080, 5, 17))
+    end=models.DateTimeField(default=datetime.datetime(2080, 5, 17))
     description=models.TextField(max_length=200 , null=True )
     def __str__(self) :
         return super().nomNoeud

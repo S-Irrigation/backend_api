@@ -50,29 +50,16 @@ def  activationManuel(request ,id):
     vanne.end=datetime.datetime(2080, 5, 17)
     vanne.status=True
     vanne.save()
-    return Response({
-        "message":"Activation Reussi",
-        "id":vanne.id,
-        "nomNoeud":vanne.nomNoeud,
-        "start":vanne.start,
-        "end":vanne.end,
-        "status":vanne.status 
-    })
-    
+    serializers=VanneSerializer(vanne, partial=True)
+    return Response(serializers.data)
 @api_view(["POST"])
 def desactivation(request , id):
     vanne=Vannes.objects.get(id=id)
     vanne.status=False
     vanne.start=vanne.end
     vanne.save()
-    return Response({
-        "message":"Desactivation Reussi",
-        "id":vanne.id,
-        "nomNoeud":vanne.nomNoeud,
-        "start":vanne.start,
-        "end":vanne.end,
-        "status":vanne.status 
-    })
+    serializers=VanneSerializer(vanne, partial=True)
+    return Response(serializers.data)
 
 
 @api_view(["GET"])

@@ -59,7 +59,7 @@ def  activationManuel(request ,id):
         "status":vanne.status 
     })
     
-@api_view(["GET"])
+@api_view(["POST"])
 def desactivation(request , id):
     vanne=Vannes.objects.get(id=id)
     vanne.status=False

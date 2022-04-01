@@ -47,7 +47,7 @@ class Unactivatevanne(viewsets.ViewSet):
 def  activationManuel(request ,id):
     vanne=Vannes.objects.get(id=id)
     vanne.start=datetime.datetime.now()
-    vanne.end=datetime.datetime(2080, 5, 17)
+    vanne.end=datetime.datetime(year=2080, month=10, day=22, hour=10, minute=19)
     vanne.status=True
     vanne.save()
     serializers=VanneSerializer(vanne, partial=True)

@@ -33,7 +33,7 @@ class ListVanne(viewsets.ViewSet):
         serializer=VanneSerializer(queryset,many=True)
         return Response(serializer.data)
 class ActivateVanne(viewsets.ViewSet):
-    def get (self , request , pk):
+    def get (self , request):
         queryset=Vannes.objects.filter(status=True)
         serializer=VanneSerializer(queryset , many=True)
         return Response(serializer.data)

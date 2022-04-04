@@ -10,13 +10,13 @@ User = get_user_model()
 class TelephoneSerializer(serializers.ModelSerializer):
     class Meta:
         model=Telephone
-        fields=("numero")
+        fields=('id','numero')
 
 # User Serializer
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'email' ,'last_name' , 'first_name' )
+        fields = ('id', 'username', 'email' ,'last_name' , 'first_name', 'telephones')
 
 # Register Serializer
 class RegisterSerializer(serializers.ModelSerializer):

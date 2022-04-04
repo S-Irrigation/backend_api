@@ -48,7 +48,7 @@ class UserAPI(generics.RetrieveAPIView):
 
 class ListUser(generics.ListAPIView):
     pass
-class AddNumber(generics.CreateAPIView):
+class AjoutNumero(generics.CreateAPIView):
     query=Telephone.objects.all()
     serializers=TelephoneSerializer
 class DeleteNumber(viewsets.ViewSet):

@@ -20,8 +20,8 @@ class Noeud(models.Model):
         abstract = True
 class Vannes(Noeud):
     status=models.BooleanField(default=False)
-    start=models.DateTimeField(default=datetime.datetime.now())
-    end=models.DateTimeField(default=datetime.datetime.now())
+    start=models.DateTimeField(default=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    end=models.DateTimeField(default=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     description=models.TextField(max_length=200 , null=True ,blank=True)
     def __str__(self) :
         return super().nomNoeud

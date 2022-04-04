@@ -7,6 +7,7 @@ from rest_framework import generics, serializers ,viewsets,permissions
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 import datetime
+from datetime import timedelta
 # Create your views here.
 class CreateChamps(generics.CreateAPIView):
     queryset=Champ.objects.all()
@@ -52,6 +53,26 @@ def  activationManuel(request ,id):
     vanne.save()
     serializers=VanneSerializer(vanne, partial=True)
     return Response(serializers.data)
+
+
+
+
+@api_view(["POST"])
+def  activationAutomatique(request ,id, date, duration):
+    vanne=Vannes.objects.get(id=id)
+    date_time_obj = datetime.strptime(date, '%Y-%m-%d %H:%M:%S')
+    vanne.start = date_time_obj
+    data = duration.split(":")
+    vanne.end=date + timedelta(hours=data[0], minutes=data[1])
+    vanne.status=True
+    vanne.save()
+    serializers=VanneSerializer(vanne, partial=True)
+    return Response(serializers.data)
+
+
+
+
+
 @api_view(["POST"])
 def desactivation(request , id):
     vanne=Vannes.objects.get(id=id)

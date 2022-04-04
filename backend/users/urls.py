@@ -22,7 +22,9 @@ urlpatterns = [
     }))),
     path('listuser/' ,ListUser.as_view(),name='listUser'),
     path('change-password/', ChangePasswordView.as_view(), name='change-password'),
-    path("addnumber/", AjoutNumero.as_view())
+    path("addnumber/", AjoutNumero.as_view({
+        "post":"create"
+    }))
     
     
 ]

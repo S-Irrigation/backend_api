@@ -48,9 +48,13 @@ class UserAPI(generics.RetrieveAPIView):
 
 class ListUser(generics.ListAPIView):
     pass
-class AjoutNumero(generics.CreateAPIView):
-    query=Telephone.objects.all()
-    serializers=TelephoneSerializer
+class AjoutNumero(viewsets.ViewSet):
+    def create(self, request):
+        serializer = TelephoneSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+
 class DeleteNumber(viewsets.ViewSet):
     def delete(self ,request ,pk=None):
         querySet=Telephone.objects.get(id=pk)

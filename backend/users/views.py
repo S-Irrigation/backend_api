@@ -1,3 +1,4 @@
+from this import d
 from django.contrib.auth import login
 from django.db.models import query
 from rest_framework import serializers, views, viewsets
@@ -13,6 +14,7 @@ from django.views.decorators.debug import sensitive_post_parameters
 
 from rest_framework.views import APIView
 from django.http import HttpResponse
+from rest_framework.decorators import api_view
 # Register API
 class RegisterAPI(generics.GenericAPIView):
     serializer_class = RegisterSerializer
@@ -44,10 +46,13 @@ class UserAPI(generics.RetrieveAPIView):
 
     def get_object(self):
         return self.request.user
+    
 
+class UserList(generics.ListAPIView):
+    model = User
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
 
-class ListUser(generics.ListAPIView):
-    pass
 class AjoutNumero(viewsets.ViewSet):
     def create(self, request):
         serializer = TelephoneSerializer(data=request.data)

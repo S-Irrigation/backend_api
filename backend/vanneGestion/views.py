@@ -60,7 +60,7 @@ def  activationManuel(request ,id):
 @api_view(["POST"])
 def  activationAutomatique(request ,id, date, duration):
     vanne=Vannes.objects.get(id=id)   
-    date_time_obj = datetime.datetime.strptime(date, '%Y-%m-%d')
+    date_time_obj = datetime.datetime.strptime(date, '%Y-%m-%d %H:%M:%S')
     vanne.start = date_time_obj
     data = duration.split(":")
     vanne.end = date_time_obj + timedelta(hours=int(data[0]), minutes=int(data[1]))

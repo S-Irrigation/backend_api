@@ -1,14 +1,14 @@
 from django.contrib.auth import login
 from django.db.models import query
 from rest_framework import serializers, views, viewsets
-from .models import User
+from .models import Telephone, User
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from knox.views import LoginView as KnoxLoginView
 
 from rest_framework import generics, permissions
 from rest_framework.response import Response
 from knox.models import AuthToken
-from .serializers import UserSerializer, RegisterSerializer, ChangePasswordSerializer
+from .serializers import TelephoneSerializer, UserSerializer, RegisterSerializer, ChangePasswordSerializer
 from django.views.decorators.debug import sensitive_post_parameters
 
 from rest_framework.views import APIView
@@ -48,7 +48,26 @@ class UserAPI(generics.RetrieveAPIView):
 
 class ListUser(generics.ListAPIView):
     pass
-  
+class AddNumber(generics.CreateAPIView):
+    query=Telephone.objects.all()
+    serializers=TelephoneSerializer
+class DeleteNumber(viewsets.ViewSet):
+    def delete(self ,request ,pk=None):
+        querySet=Telephone.objects.get(id=pk)
+        querySet.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT) 
+class UpdateUser(viewsets.ViewSet):
+    def update(self ,request ,pk=None):
+        query=User.objects.get(id=pk)
+        serializers=UserSerializer(query, partial=True)
+        return Response(serializers.data)
+ 
+class UpdateNumber(viewsets.ViewSet):
+    def update(self ,request ,pk=None):
+        query=Telephone.objects.get(id=pk)
+        serializers=UserSerializer(query, partial=True)
+        return Response(serializers.data)
+ 
 class DeleteUser(viewsets.ViewSet):
     def delete(self , request ,pk=None):
         querySet=User.objects.get(id=pk)

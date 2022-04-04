@@ -1,10 +1,16 @@
+from dataclasses import fields
 from rest_framework import generics, permissions
 from rest_framework import serializers
-from .models import User
+from .models import Telephone, User
 
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
+#Telephone Serializer
+class TelephoneSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Telephone
+        fields=("id" ,"numero")
 
 # User Serializer
 class UserSerializer(serializers.ModelSerializer):

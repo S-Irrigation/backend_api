@@ -59,15 +59,15 @@ def  activationManuel(request ,id):
 
 @api_view(["POST"])
 def  activationAutomatique(request ,id, date, duration):
-    vanne=Vannes.objects.get(id=id)
-    date_time_obj = datetime.datetime.strptime(date, '%Y-%m-%d').date()
+    vanne=Vannes.objects.get(id=id)   
+    date_time_obj = datetime.datetime.strptime(date, '%Y-%m-%d')
     vanne.start = date_time_obj
     data = duration.split(":")
-    vanne.end=date + timedelta(hours=data[0], minutes=data[1])
+    vanne.end = date_time_obj + timedelta(hours=int(data[0]), minutes=int(data[1]))
     vanne.status=True
     vanne.save()
     serializers=VanneSerializer(vanne, partial=True)
-    return Response(serializers.data)
+    return  Response(serializers.data)
 
 
 

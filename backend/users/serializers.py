@@ -22,12 +22,12 @@ class UserSerializer(serializers.ModelSerializer):
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'email', 'password' , 'last_name' , 'first_name',)
+        fields = ('id', 'username', 'email', 'password' , 'last_name' , 'first_name','telephones')
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
         user = get_user_model().objects.create_user(self.validated_data ['username'],  
-        self.validated_data['email'], self.validated_data['password']  , last_name=validated_data['last_name'], first_name=validated_data['first_name'] )
+        self.validated_data['email'], self.validated_data['password']  , last_name=validated_data['last_name'], first_name=validated_data['first_name'],telephones=validated_data['telephones'] )
 
         return user
 

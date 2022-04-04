@@ -7,6 +7,7 @@ from django.db import models
 
 # Create your models here.
 class Telephone(models.Model):
+    #user=models.ForeignKey(User)
     numero=models.IntegerField(max_length=8 ,unique=True)
     def __str__(self):
         return self.numero

@@ -64,7 +64,7 @@ def  activationAutomatique(request ,id, date, duration):
     vanne.start = date_time_obj
     data = duration.split(":")
     vanne.end = date_time_obj + timedelta(hours=int(data[0]), minutes=int(data[1]))
-    vanne.status=True
+    vanne.status=False
     vanne.save()
     serializers=VanneSerializer(vanne, partial=True)
     return  Response(serializers.data)

@@ -6,7 +6,10 @@ from vanneGestion.serializers import ChampsSerializer, VanneSerializer
 from rest_framework import generics, serializers ,viewsets,permissions
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-import datetime
+import datetime 
+from datetime import datetime
+from dateutil import tz
+
 from datetime import timedelta
 # Create your views here.
 class CreateChamps(generics.CreateAPIView):
@@ -48,6 +51,7 @@ class Unactivatevanne(viewsets.ViewSet):
 def  activationManuel(request ,id):
     vanne=Vannes.objects.get(id=id)
     vanne.start=datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
+    vanne.start = datetime.today().astimezone(tz=tz.gettz('Europe/Paris')).strftime("%Y-%m-%dT%H:%M:%S")
     vanne.end=datetime.datetime(2080, 4, 2, 21, 8, 8).strftime("%Y-%m-%dT%H:%M:%S")
     vanne.status=False
     vanne.save()

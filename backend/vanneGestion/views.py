@@ -50,9 +50,9 @@ class Unactivatevanne(viewsets.ViewSet):
 @api_view(["POST"])
 def  activationManuel(request ,id):
     vanne=Vannes.objects.get(id=id)
-    vanne.start=datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
+    #vanne.start=datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
     vanne.start = datetime.today().astimezone(tz=tz.gettz('Europe/Paris')).strftime("%Y-%m-%dT%H:%M:%S")
-    vanne.end=datetime.datetime(2080, 4, 2, 21, 8, 8).strftime("%Y-%m-%dT%H:%M:%S")
+    vanne.end=datetime(2080, 4, 2, 21, 8, 8).strftime("%Y-%m-%dT%H:%M:%S")
     vanne.status=False
     vanne.save()
     serializers=VanneSerializer(vanne, partial=True)

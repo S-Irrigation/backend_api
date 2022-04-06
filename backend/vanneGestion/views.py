@@ -53,7 +53,6 @@ def  activationManuel(request ,id):
     #vanne.start=datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
     vanne.start = datetime.today().astimezone(tz=tz.gettz('Europe/Paris')).strftime("%Y-%m-%dT%H:%M:%S")
     vanne.end=datetime(2080, 4, 2, 21, 8, 8).strftime("%Y-%m-%dT%H:%M:%S")
-    vanne.status=False
     vanne.save()
     serializers=VanneSerializer(vanne, partial=True)
     return Response(serializers.data)
@@ -68,7 +67,6 @@ def  activationAutomatique(request ,id, date, duration):
     vanne.start = date_time_obj
     data = duration.split(":")
     vanne.end = date_time_obj + timedelta(hours=int(data[0]), minutes=int(data[1]))
-    vanne.status=False
     vanne.save()
     serializers=VanneSerializer(vanne, partial=True)
     return  Response(serializers.data)
@@ -80,7 +78,7 @@ def  activationAutomatique(request ,id, date, duration):
 @api_view(["POST"])
 def desactivation(request , id):
     vanne=Vannes.objects.get(id=id)
-    vanne.status=False
+    vanne.end=datetime.today().astimezone(tz=tz.gettz('Europe/Paris')).strftime("%Y-%m-%dT%H:%M:%S")
     vanne.start=vanne.end
     vanne.save()
     serializers=VanneSerializer(vanne, partial=True)
